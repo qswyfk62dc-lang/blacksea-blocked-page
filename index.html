@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>НКЕК | Доступ обмежено</title>
+    <title>Державний реєстр обмежених ресурсів | НКЕК</title>
     <style>
         :root {
             --bg-deep: #0a0e14;
-            --card-bg: #151a21;
+            --card-bg: #111821;
             --header-black: #000000;
             --accent-blue: #0057b7;
             --accent-gold: #ffd700;
             --error-red: #ff4d4d;
             --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --border: #30363d;
+            --text-secondary: #94a3b8;
+            --border: #21262d;
         }
 
         * { box-sizing: border-box; }
@@ -24,218 +24,265 @@
             background-color: var(--bg-deep);
             color: var(--text-primary);
             margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             min-height: 100vh;
-            padding: 20px;
         }
 
-        .main-container {
-            width: 100%;
-            max-width: 850px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            overflow: hidden;
-        }
-
-        /* Державна шапка */
+        /* Повнорозмірна державна шапка */
         .gov-header {
             background: var(--header-black);
-            padding: 40px 60px;
+            padding: 30px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border);
         }
 
+        .nkek-brand {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         .nkek-title {
             text-transform: uppercase;
             font-weight: 800;
             font-size: 14px;
-            letter-spacing: 2px;
-            line-height: 1.4;
+            letter-spacing: 1px;
+            line-height: 1.3;
             color: #fff;
-            max-width: 70%;
         }
 
         .nkek-title span {
             display: block;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 400;
             color: var(--text-secondary);
-            margin-top: 5px;
+            margin-top: 4px;
             text-transform: none;
-            letter-spacing: 0.5px;
         }
 
         .coat-of-arms {
-            height: 60px;
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.2));
+            height: 50px;
         }
 
-        /* Розділова лінія (Прапор) */
-        .flag-separator {
+        .flag-line {
             display: flex;
-            height: 3px;
+            height: 4px;
             width: 100%;
         }
         .blue { background: var(--accent-blue); flex: 1; }
         .gold { background: var(--accent-gold); flex: 1; }
 
-        .content-body {
-            padding: 60px;
+        /* Основний контент на всю ширину */
+        main {
+            flex: 1;
+            padding: 60px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        h1 {
-            font-size: 28px;
-            color: var(--error-red);
-            margin: 0 0 25px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 900;
+        .hero-section {
+            width: 100%;
+            max-width: 1200px;
         }
 
         .status-badge {
-            display: inline-block;
-            padding: 6px 12px;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
             background: rgba(255, 77, 77, 0.1);
             border: 1px solid var(--error-red);
             color: var(--error-red);
-            font-size: 12px;
-            font-weight: 700;
-            border-radius: 3px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        .description {
-            font-size: 17px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: var(--text-primary);
-            text-align: justify;
-        }
-
-        .regulation-block {
-            background: rgba(0,0,0,0.2);
-            border-radius: 4px;
-            padding: 30px;
-            margin-bottom: 40px;
-            border-left: 4px solid var(--accent-blue);
-        }
-
-        .regulation-block h2 {
             font-size: 13px;
-            color: var(--accent-blue);
-            margin: 0 0 15px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             font-weight: 700;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
         }
 
-        .reg-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        h1 {
+            font-size: clamp(24px, 5vw, 42px);
+            color: #fff;
+            margin: 0 0 30px 0;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .main-description {
+            font-size: clamp(16px, 2vw, 20px);
+            line-height: 1.6;
+            margin-bottom: 50px;
+            color: var(--text-primary);
+            max-width: 900px;
+        }
+
+        /* Блоки з деталями */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 50px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .info-card h3 {
+            color: var(--accent-blue);
             font-size: 14px;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .info-card p, .info-card li {
+            font-size: 15px;
+            line-height: 1.7;
             color: var(--text-secondary);
-            line-height: 2;
+            margin-bottom: 10px;
         }
 
-        .reg-list li::before {
-            content: "—";
-            margin-right: 10px;
-            color: var(--accent-gold);
-            font-weight: bold;
-        }
-
-        .footer {
-            padding: 30px 60px;
-            background: rgba(0,0,0,0.3);
+        /* Секція Питання-Відповідь */
+        .details-section {
+            width: 100%;
+            max-width: 1200px;
             border-top: 1px solid var(--border);
+            padding-top: 50px;
+        }
+
+        .q-block {
+            margin-bottom: 40px;
+        }
+
+        .q-block b {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+
+        /* Футер */
+        footer {
+            background: var(--header-black);
+            padding: 40px 5%;
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-text {
             font-size: 12px;
             color: var(--text-secondary);
+            line-height: 1.8;
         }
 
-        .footer-logo {
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--text-primary);
-            text-transform: uppercase;
-        }
-
-        /* Адаптація для мобільних пристроїв */
+        /* Адаптивність */
         @media (max-width: 768px) {
-            .gov-header { padding: 30px; flex-direction: column; text-align: center; }
-            .nkek-title { max-width: 100%; font-size: 12px; }
-            .coat-of-arms { margin-top: 20px; height: 50px; }
-            .content-body { padding: 40px 25px; }
-            .footer { padding: 30px; flex-direction: column; gap: 15px; text-align: center; }
-            h1 { font-size: 22px; }
-            .description { font-size: 15px; }
+            .gov-header { flex-direction: column; text-align: center; gap: 20px; }
+            .nkek-brand { flex-direction: column; }
+            main { padding: 40px 20px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; text-align: center; }
         }
 
-        /* Оптимізація для 4K/TV */
-        @media (min-width: 2000px) {
-            .main-container { max-width: 1100px; }
-            h1 { font-size: 36px; }
-            .description { font-size: 22px; }
-            .nkek-title { font-size: 18px; }
+        /* Оптимізація для TV */
+        @media (min-width: 2500px) {
+            .hero-section, .info-grid, .details-section, .footer-content { max-width: 1800px; }
+            .nkek-title { font-size: 22px; }
+            .main-description { font-size: 28px; }
         }
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <header class="gov-header">
-        <div class="nkek-title">
-            Національна комісія<span>що здійснює державне регулювання у сферах електронних комунікацій, радіочастотного спектра та надання послуг поштового зв'язку</span>
-        </div>
+<header class="gov-header">
+    <div class="nkek-brand">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Lesser_Coat_of_Arms_of_Ukraine.svg" alt="Герб України" class="coat-of-arms">
-    </header>
-
-    <div class="flag-separator">
-        <div class="blue"></div>
-        <div class="gold"></div>
+        <div class="nkek-title">
+            Національна комісія<span>що здійснює державне регулювання у сферах електронних комунікацій та радіочастотного спектра</span>
+        </div>
     </div>
+</header>
 
-    <div class="content-body">
-        <div class="status-badge">Заблоковано</div>
-        <h1>Доступ до ресурсу обмежено</h1>
-
-        <div class="description">
-            Даний інформаційний ресурс внесено до реєстру вебресурсів, доступ до яких підлягає обмеженню на території України. Обмеження застосовано відповідно до нормативно-правових актів щодо захисту національних інтересів та інформаційної безпеки держави.
-        </div>
-
-        <div class="regulation-block">
-            <h2>Правові підстави:</h2>
-            <ul class="reg-list">
-                <li>Закон України «Про електронні комунікації»</li>
-                <li>Розпорядження НЦУ при Державній службі спеціального зв'язку України</li>
-                <li>Рішення Ради національної безпеки і оборони України (РНБО)</li>
-                <li>Укази Президента України щодо реалізації санкційної політики</li>
-            </ul>
-        </div>
-
-        <p style="color: var(--text-secondary); font-size: 13px; line-height: 1.6;">
-            Технічна реалізація обмеження доступу забезпечується операторами та провайдерами телекомунікацій на виконання розпоряджень державних органів.
-        </p>
-    </div>
-
-    <footer class="footer">
-        <div class="footer-logo">НКЕК / NCEC</div>
-        <div style="text-align: right;">
-            © 2026 Державний реєстр обмежених ресурсів<br>
-            Центр моніторингу інформаційного простору
-        </div>
-    </footer>
+<div class="flag-line">
+    <div class="blue"></div>
+    <div class="gold"></div>
 </div>
+
+<main>
+    <section class="hero-section">
+        <div class="status-badge">Доступ обмежено регулятором</div>
+        <h1>Технічне обмеження доступу до ресурсу</h1>
+        <p class="main-description">
+            Відповідно до розпорядження Національного центру оперативно-технічного управління мережами телекомунікацій (НЦУ), цей вебресурс внесено до переліку об'єктів, доступ до яких блокується на рівні національних операторів зв'язку.
+        </p>
+    </section>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>Чому це заблоковано?</h3>
+            <p>Блокування ініційовано НКЕК з метою захисту національного інформаційного простору. Ресурс ідентифіковано як такий, що порушує законодавство України в умовах воєнного стану або використовується для розповсюдження забороненого контенту.</p>
+        </div>
+        <div class="info-card">
+            <h3>Чи буде доступ відновлено?</h3>
+            <p>Рішення про розблокування приймається НЦУ та НКЕК після усунення причин, що призвели до обмеження, або після завершення дії відповідних санкцій та розпоряджень державних органів.</p>
+        </div>
+        <div class="info-card">
+            <h3>Термін дії обмеження</h3>
+            <p>Доступ обмежено на термін дії воєнного стану в Україні або до моменту видання окремого розпорядження про зняття технічного фільтрування трафіку на магістральних каналах.</p>
+        </div>
+    </div>
+
+    <section class="details-section">
+        <div class="q-block">
+            <b>Як це працює технічно?</b>
+            <p>Блокування здійснюється на рівні DNS-фільтрації та аналізу пакетів (DPI) провайдерами мобільного та домашнього інтернету. Це означає, що запит до хоста перехоплюється та перенаправляється на цю інформаційну сторінку регулятора.</p>
+        </div>
+
+        <div class="q-block">
+            <b>Що робити, якщо я вважаю блокування помилковим?</b>
+            <p>Ви можете звернутися до офіційної приймальні НКЕК для отримання роз'яснень щодо статусу даного домену. Оператори зв'язку не мають повноважень самостійно знімати обмеження, встановлені державним регулятором.</p>
+        </div>
+
+        <div class="q-block">
+            <b>Правове регулювання</b>
+            <p style="font-size: 14px; color: var(--text-secondary);">
+                Обмеження діє згідно зі ст. 32 Закону України «Про електронні комунікації», розпорядженнями НЦУ та рішеннями РНБО щодо забезпечення кібербезпеки та інформаційної цілісності держави.
+            </p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">НКЕК / NCEC UKRAINE</div>
+        <div class="footer-text">
+            Служба моніторингу інформаційного простору<br>
+            © 2026 Державний реєстр обмежених вебресурсів<br>
+            м. Київ, Україна
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
