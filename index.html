@@ -3,186 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Доступ обмежено | Чорне море Телекомпанія</title>
+    <title>Доступ обмежено | Чорне море</title>
     <style>
         :root {
             --primary-blue: #003366;
-            --accent-gold: #ffcc00;
-            --gov-gray: #f8f9fa;
-            --text-dark: #212529;
-            --border-color: #dee2e6;
+            --gov-blue: #0057b7;
+            --gov-gold: #ffd700;
+            --error-red: #c62828;
+            --bg-color: #f2f4f7;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #546e7a;
+        }
+
+        /* Полная адаптивность для TV, Desktop и Mobile */
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ebf0f5;
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
 
-        .wrapper {
-            background: #ffffff;
+        .container {
             width: 100%;
-            max-width: 700px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 800px;
+            background: var(--card-bg);
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             position: relative;
             overflow: hidden;
         }
 
-        /* Синя смуга зверху */
-        .top-bar {
-            height: 6px;
-            background: linear-gradient(90deg, #0057b7 50%, #ffd700 50%);
+        /* Государственный маркер */
+        .header-line {
+            display: flex;
+            height: 4px;
+            width: 100%;
         }
+        .line-blue { background: var(--gov-blue); flex: 1; }
+        .line-gold { background: var(--gov-gold); flex: 1; }
 
         .content {
-            padding: 50px;
+            padding: 60px;
         }
 
-        .header {
+        /* Шапка с логотипом */
+        .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--gov-gray);
-            padding-bottom: 20px;
+            margin-bottom: 50px;
+            gap: 20px;
         }
 
-        .brand {
-            line-height: 1.1;
+        .logo-placeholder {
+            max-width: 220px;
+            height: auto;
+            display: block;
         }
 
-        .brand-name {
-            font-size: 22px;
-            font-weight: 900;
-            color: var(--primary-blue);
-            text-transform: uppercase;
+        .ua-emblem {
+            height: 65px;
+            width: auto;
         }
 
-        .brand-sub {
-            font-size: 12px;
-            color: #666;
-            letter-spacing: 2px;
-        }
-
-        .ua-logo {
-            height: 60px;
-        }
-
+        /* Текстовый блок */
         h1 {
-            color: #c62828;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 800;
-            margin-bottom: 20px;
+            color: var(--error-red);
+            margin: 0 0 24px 0;
             text-transform: uppercase;
+            letter-spacing: -0.5px;
         }
 
-        .message {
-            font-size: 16px;
-            line-height: 1.7;
-            text-align: justify;
-            margin-bottom: 25px;
+        .lead-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            font-weight: 400;
         }
 
-        .legal-box {
-            background-color: var(--gov-gray);
-            border-left: 5px solid var(--primary-blue);
-            padding: 20px;
-            font-size: 14px;
-            color: #444;
-            margin-bottom: 30px;
+        /* Секция с законом */
+        .law-notice {
+            background: #f8f9fa;
+            border-left: 4px solid var(--gov-blue);
+            padding: 30px;
+            margin-bottom: 40px;
         }
 
-        .legal-box h3 {
-            margin-top: 0;
+        .law-notice h2 {
             font-size: 14px;
             text-transform: uppercase;
-            color: var(--primary-blue);
+            color: var(--gov-blue);
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
         }
 
+        .law-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .law-list li::before {
+            content: "•";
+            color: var(--gov-blue);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+        }
+
+        /* Нижняя часть */
         .footer {
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-            font-size: 12px;
-            color: #888;
+            border-top: 1px solid #edf2f7;
+            padding-top: 30px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .support-info b {
-            color: #444;
+        .contact-info {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
-        /* Декоративна печатка провайдера */
-        .watermark {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            opacity: 0.03;
-            transform: rotate(-15deg);
-            pointer-events: none;
+        .contact-info b {
+            color: var(--text-main);
+            font-size: 16px;
         }
 
-        @media (max-width: 600px) {
-            .content { padding: 30px; }
-            .header { flex-direction: column; text-align: center; }
-            .ua-logo { margin-top: 20px; }
+        .location-info {
+            text-align: right;
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 640px) {
+            body { padding: 10px; }
+            .content { padding: 30px 20px; }
+            .top-nav { flex-direction: column; text-align: center; }
+            .ua-emblem { height: 50px; order: -1; }
+            h1 { font-size: 22px; }
+            .lead-text { font-size: 16px; }
+            .footer { flex-direction: column; text-align: center; }
+            .location-info { text-align: center; width: 100%; }
+        }
+
+        /* Оптимизация для TV (крупный шрифт при большом экране) */
+        @media (min-width: 1900px) {
+            .container { max-width: 1000px; }
+            h1 { font-size: 36px; }
+            .lead-text { font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="top-bar"></div>
+<div class="container">
+    <div class="header-line">
+        <div class="line-blue"></div>
+        <div class="line-gold"></div>
+    </div>
+
     <div class="content">
-        <div class="header">
-            <div class="brand">
-                <div class="brand-name">Чорне море</div>
-                <div class="brand-sub">ТЕЛЕКОМУНІКАЦІЇ</div>
-            </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Lesser_Coat_of_Arms_of_Ukraine.svg" alt="Державний Герб України" class="ua-logo">
+        <div class="top-nav">
+            <!-- Вставь ссылку на свой логотип в src -->
+            <img src="ССЫЛКА_НА_ТВОЙ_ЛОГОТИП" alt="Чорне море" class="logo-placeholder">
+            
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Lesser_Coat_of_Arms_of_Ukraine.svg" alt="Державний Герб" class="ua-emblem">
         </div>
 
         <h1>Доступ обмежено</h1>
 
-        <div class="message">
-            Шановний користувачу! Повідомляємо, що доступ до даного інформаційного ресурсу тимчасово обмежено. Провайдер діє на підставі вимог чинного законодавства щодо забезпечення інформаційної безпеки держави.
+        <div class="lead-text">
+            Шановний абоненте! Доступ до даного веб-ресурсу заблоковано технічними засобами провайдера на виконання розпоряджень державних органів влади України.
         </div>
 
-        <div class="legal-box">
-            <h3>Юридичні підстави:</h3>
-            • Розпорядження НЦУ при Держспецзв'язку України від 2026 р.<br>
-            • Закон України «Про електронні комунікації» (ст. 32)<br>
-            • Рішення РНБО України щодо санкційної політики та захисту кіберпростору.
+        <div class="law-notice">
+            <h2>Юридичні підстави обмеження:</h2>
+            <ul class="law-list">
+                <li>Закон України «Про електронні комунікації»</li>
+                <li>Розпорядження НЦУ при Державній службі спеціального зв'язку</li>
+                <li>Укази Президента України щодо застосування персональних санкцій</li>
+                <li>Рішення РНБО України про захист інформаційного простору</li>
+            </ul>
         </div>
 
-        <p class="message" style="font-size: 14px; color: #666;">
-            Відновлення доступу можливе лише після скасування відповідних розпоряджень державними регуляторними органами.
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
+            Відповідно до чинного законодавства, провайдери телекомунікацій зобов'язані обмежувати доступ до ресурсів, що несуть загрозу національній безпеці або включені до санкційних списків. Відновлення доступу можливе виключно у разі скасування відповідних державних рішень.
         </p>
 
         <div class="footer">
-            <div class="support-info">
+            <div class="contact-info">
                 Технічна підтримка «Чорне море»:<br>
-                <b>048 777 0999</b> (безкоштовно)
+                <b>0-800-31-00-31</b><br>
+                <span style="font-size: 12px;">(дзвінки безкоштовні)</span>
             </div>
-            <div style="text-align: right;">
-                м. Одеса, 2026 р.<br>
-                ID системи: #BLOCK_UA_7741
+            
+            <div class="location-info">
+                ТОВ ТРК «ЧОРНЕ МОРЕ»<br>
+                Україна, м. Одеса, 2026<br>
+                Статус: Ресурс у переліку обмежених
             </div>
         </div>
     </div>
-
-    <!-- Фоновий логотип для стилю -->
-    <svg class="watermark" width="200" height="200" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill="none" />
-        <text x="50%" y="55%" text-anchor="middle" font-size="8" font-weight="bold">BLACK SEA TELECOM</text>
-    </svg>
 </div>
 
 </body>
