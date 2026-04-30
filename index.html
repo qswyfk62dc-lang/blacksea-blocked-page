@@ -304,29 +304,29 @@
         <div class="tech-panel">
             <span class="tech-title">Службова інформація про мережевий запит (Натисніть для копіювання)</span>
             <div class="log-grid">
-                <div class="log-item" onclick="copyValue('https://sprinthost.ru')">
+                <div class="log-item" id="copy-uri">
                     <span class="log-key">Адреса сайту</span>
-                    <span class="log-value">sprinthost.ru</span>
+                    <span class="log-value" id="val-uri">...</span>
                 </div>
-                <div class="log-item" onclick="copyValue('fb2c425f-6d9b-44e6-ac92-75947df309e9')">
+                <div class="log-item" id="copy-qid">
                     <span class="log-key">Query ID</span>
-                    <span class="log-value">fb2c425f-6d9b...</span>
+                    <span class="log-value" id="val-qid">...</span>
                 </div>
                 <div class="log-item">
                     <span class="log-key">Категорія ресурсу</span>
-                    <span class="log-value" id="category">Визначення...</span>
+                    <span class="log-value" id="val-cat">Визначення...</span>
                 </div>
                 <div class="log-item">
                     <span class="log-key">Час блокування</span>
-                    <span class="log-value" id="local-time">...</span>
+                    <span class="log-value" id="val-time">...</span>
                 </div>
                 <div class="log-item">
                     <span class="log-key">Місто запиту</span>
-                    <span class="log-value" id="location">Визначення...</span>
+                    <span class="log-value" id="val-loc">Визначення...</span>
                 </div>
-                <div class="log-item" onclick="copyValue('104.28.220.247')">
+                <div class="log-item" id="copy-ip">
                     <span class="log-key">Адреса джерела (IP)</span>
-                    <span class="log-value">104.28.220.247</span>
+                    <span class="log-value" id="val-ip">...</span>
                 </div>
             </div>
         </div>
@@ -345,33 +345,68 @@
 </footer>
 
 <script>
-    // Конвертація Timestamp
-    const timestamp = 1777552033;
-    const localTime = new Date(timestamp * 1000).toLocaleString('uk-UA');
-    document.getElementById('local-time').innerText = localTime;
+    // Отримання параметрів з URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // 1. Адреса сайту
+    const rawUri = urlParams.get('cf_site_uri') || 'невідомо';
+    const cleanUri = rawUri.replace(/^https?:\/\//, '');
+    document.getElementById('val-uri').innerText = cleanUri;
 
-    // Визначення міста
+    // 2. Query ID
+    const qid = urlParams.get('cf_query_id') || 'N/A';
+    document.getElementById('val-qid').innerText = qid.length > 15 ? qid.substring(0, 15) + '...' : qid;
+
+    // 3. Час (конвертація з Timestamp)
+    const ts = urlParams.get('cf_timestamp');
+    if (ts) {
+        const date = new Date(parseInt(ts) * 1000);
+        document.getElementById('val-time').innerText = date.toLocaleString('uk-UA');
+    } else {
+        document.getElementById('val-time').innerText = new Date().toLocaleString('uk-UA');
+    }
+
+    // 4. IP Адреса
+    const ip = urlParams.get('cf_source_ip') || 'приховано';
+    document.getElementById('val-ip').innerText = ip;
+
+    // 5. Переклад категорій
+    const categories = urlParams.getAll('cf_request_category_names');
+    const dict = {
+        "Technology": "Технології",
+        "Information Technology": "IT / Інфотехнології",
+        "Gaming": "Ігри / Геймінг",
+        "Entertainment": "Розваги",
+        "Social Networking": "Соцмережі",
+        "News": "Новини"
+    };
+    
+    if (categories.length > 0) {
+        const translated = categories.map(c => dict[c] || c).join(', ');
+        document.getElementById('val-cat').innerText = translated;
+    } else {
+        document.getElementById('val-cat').innerText = 'Не визначено';
+    }
+
+    // 6. Визначення міста
     fetch('https://ipapi.co/json/')
         .then(res => res.json())
         .then(data => {
-            document.getElementById('location').innerText = data.city || 'Україна';
+            document.getElementById('val-loc').innerText = data.city || 'Україна';
         })
-        .catch(() => document.getElementById('location').innerText = 'Україна');
+        .catch(() => document.getElementById('val-loc').innerText = 'Україна');
 
-    // Переклад категорій
-    const rawCategories = "Technology, Information Technology";
-    const translations = {
-        "Technology": "Технології",
-        "Information Technology": "IT / Інфотехнології"
-    };
-    const translated = rawCategories.split(', ').map(cat => translations[cat] || cat).join(', ');
-    document.getElementById('category').innerText = translated;
-
-    // Функція копіювання
-    function copyValue(text) {
-        navigator.clipboard.writeText(text);
-        alert('Дані скопійовано');
+    // 7. Функції копіювання
+    function setupCopy(elementId, textToCopy) {
+        document.getElementById(elementId).addEventListener('click', () => {
+            navigator.clipboard.writeText(textToCopy);
+            alert('Дані скопійовано: ' + textToCopy);
+        });
     }
+
+    setupCopy('copy-uri', rawUri);
+    setupCopy('copy-qid', qid);
+    setupCopy('copy-ip', ip);
 </script>
 
 </body>
