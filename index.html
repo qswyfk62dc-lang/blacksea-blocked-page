@@ -3,228 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Доступ обмежено | Чорне море</title>
+    <title>НКЕК | Доступ обмежено</title>
     <style>
         :root {
-            --primary-blue: #003366;
-            --gov-blue: #0057b7;
-            --gov-gold: #ffd700;
-            --error-red: #c62828;
-            --bg-color: #f2f4f7;
-            --card-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-muted: #546e7a;
+            --bg-deep: #0a0e14;
+            --card-bg: #151a21;
+            --header-black: #000000;
+            --accent-blue: #0057b7;
+            --accent-gold: #ffd700;
+            --error-red: #ff4d4d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border: #30363d;
         }
 
-        /* Полная адаптивность для TV, Desktop и Mobile */
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
             margin: 0;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px;
         }
 
-        .container {
+        .main-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
             background: var(--card-bg);
-            border-radius: 4px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            position: relative;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
             overflow: hidden;
         }
 
-        /* Государственный маркер */
-        .header-line {
-            display: flex;
-            height: 4px;
-            width: 100%;
-        }
-        .line-blue { background: var(--gov-blue); flex: 1; }
-        .line-gold { background: var(--gov-gold); flex: 1; }
-
-        .content {
-            padding: 60px;
-        }
-
-        /* Шапка с логотипом */
-        .top-nav {
+        /* Державна шапка */
+        .gov-header {
+            background: var(--header-black);
+            padding: 40px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 50px;
-            gap: 20px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo-placeholder {
-            max-width: 220px;
-            height: auto;
+        .nkek-title {
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 2px;
+            line-height: 1.4;
+            color: #fff;
+            max-width: 70%;
+        }
+
+        .nkek-title span {
             display: block;
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            text-transform: none;
+            letter-spacing: 0.5px;
         }
 
-        .ua-emblem {
-            height: 65px;
-            width: auto;
+        .coat-of-arms {
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.2));
         }
 
-        /* Текстовый блок */
+        /* Розділова лінія (Прапор) */
+        .flag-separator {
+            display: flex;
+            height: 3px;
+            width: 100%;
+        }
+        .blue { background: var(--accent-blue); flex: 1; }
+        .gold { background: var(--accent-gold); flex: 1; }
+
+        .content-body {
+            padding: 60px;
+        }
+
         h1 {
             font-size: 28px;
-            font-weight: 800;
             color: var(--error-red);
-            margin: 0 0 24px 0;
+            margin: 0 0 25px 0;
             text-transform: uppercase;
-            letter-spacing: -0.5px;
+            letter-spacing: 1px;
+            font-weight: 900;
         }
 
-        .lead-text {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 32px;
-            font-weight: 400;
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(255, 77, 77, 0.1);
+            border: 1px solid var(--error-red);
+            color: var(--error-red);
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
         }
 
-        /* Секция с законом */
-        .law-notice {
-            background: #f8f9fa;
-            border-left: 4px solid var(--gov-blue);
+        .description {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            text-align: justify;
+        }
+
+        .regulation-block {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
             padding: 30px;
             margin-bottom: 40px;
+            border-left: 4px solid var(--accent-blue);
         }
 
-        .law-notice h2 {
-            font-size: 14px;
-            text-transform: uppercase;
-            color: var(--gov-blue);
+        .regulation-block h2 {
+            font-size: 13px;
+            color: var(--accent-blue);
             margin: 0 0 15px 0;
+            text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 700;
         }
 
-        .law-list {
-            margin: 0;
-            padding: 0;
+        .reg-list {
             list-style: none;
-            font-size: 15px;
-            line-height: 1.8;
-            color: var(--text-muted);
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 2;
         }
 
-        .law-list li::before {
-            content: "•";
-            color: var(--gov-blue);
+        .reg-list li::before {
+            content: "—";
+            margin-right: 10px;
+            color: var(--accent-gold);
             font-weight: bold;
-            display: inline-block; 
-            width: 1em;
         }
 
-        /* Нижняя часть */
         .footer {
-            border-top: 1px solid #edf2f7;
-            padding-top: 30px;
+            padding: 30px 60px;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 20px;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-secondary);
         }
 
-        .contact-info {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.5;
+        .footer-logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            text-transform: uppercase;
         }
 
-        .contact-info b {
-            color: var(--text-main);
-            font-size: 16px;
-        }
-
-        .location-info {
-            text-align: right;
-            font-size: 13px;
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-
-        /* Адаптивность для мобилок */
-        @media (max-width: 640px) {
-            body { padding: 10px; }
-            .content { padding: 30px 20px; }
-            .top-nav { flex-direction: column; text-align: center; }
-            .ua-emblem { height: 50px; order: -1; }
+        /* Адаптація для мобільних пристроїв */
+        @media (max-width: 768px) {
+            .gov-header { padding: 30px; flex-direction: column; text-align: center; }
+            .nkek-title { max-width: 100%; font-size: 12px; }
+            .coat-of-arms { margin-top: 20px; height: 50px; }
+            .content-body { padding: 40px 25px; }
+            .footer { padding: 30px; flex-direction: column; gap: 15px; text-align: center; }
             h1 { font-size: 22px; }
-            .lead-text { font-size: 16px; }
-            .footer { flex-direction: column; text-align: center; }
-            .location-info { text-align: center; width: 100%; }
+            .description { font-size: 15px; }
         }
 
-        /* Оптимизация для TV (крупный шрифт при большом экране) */
-        @media (min-width: 1900px) {
-            .container { max-width: 1000px; }
+        /* Оптимізація для 4K/TV */
+        @media (min-width: 2000px) {
+            .main-container { max-width: 1100px; }
             h1 { font-size: 36px; }
-            .lead-text { font-size: 22px; }
+            .description { font-size: 22px; }
+            .nkek-title { font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header-line">
-        <div class="line-blue"></div>
-        <div class="line-gold"></div>
+<div class="main-container">
+    <header class="gov-header">
+        <div class="nkek-title">
+            Національна комісія<span>що здійснює державне регулювання у сферах електронних комунікацій, радіочастотного спектра та надання послуг поштового зв'язку</span>
+        </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Lesser_Coat_of_Arms_of_Ukraine.svg" alt="Герб України" class="coat-of-arms">
+    </header>
+
+    <div class="flag-separator">
+        <div class="blue"></div>
+        <div class="gold"></div>
     </div>
 
-    <div class="content">
-        <div class="top-nav">
-            <!-- Вставь ссылку на свой логотип в src -->
-            <img src="https://cdn.brandfetch.io/idOSE8o0h7/w/864/h/864/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1772364996422" alt="Чорне море" class="logo-placeholder">
-            
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Lesser_Coat_of_Arms_of_Ukraine.svg" alt="Державний Герб" class="ua-emblem">
+    <div class="content-body">
+        <div class="status-badge">Заблоковано</div>
+        <h1>Доступ до ресурсу обмежено</h1>
+
+        <div class="description">
+            Даний інформаційний ресурс внесено до реєстру вебресурсів, доступ до яких підлягає обмеженню на території України. Обмеження застосовано відповідно до нормативно-правових актів щодо захисту національних інтересів та інформаційної безпеки держави.
         </div>
 
-        <h1>Доступ обмежено</h1>
-
-        <div class="lead-text">
-            Шановний абоненте! Доступ до даного веб-ресурсу заблоковано технічними засобами провайдера на виконання розпоряджень державних органів влади України.
-        </div>
-
-        <div class="law-notice">
-            <h2>Юридичні підстави обмеження:</h2>
-            <ul class="law-list">
+        <div class="regulation-block">
+            <h2>Правові підстави:</h2>
+            <ul class="reg-list">
                 <li>Закон України «Про електронні комунікації»</li>
-                <li>Розпорядження НЦУ при Державній службі спеціального зв'язку</li>
-                <li>Укази Президента України щодо застосування персональних санкцій</li>
-                <li>Рішення РНБО України про захист інформаційного простору</li>
+                <li>Розпорядження НЦУ при Державній службі спеціального зв'язку України</li>
+                <li>Рішення Ради національної безпеки і оборони України (РНБО)</li>
+                <li>Укази Президента України щодо реалізації санкційної політики</li>
             </ul>
         </div>
 
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 40px; line-height: 1.6;">
-            Відповідно до чинного законодавства, провайдери телекомунікацій зобов'язані обмежувати доступ до ресурсів, що несуть загрозу національній безпеці або включені до санкційних списків. Відновлення доступу можливе виключно у разі скасування відповідних державних рішень.
+        <p style="color: var(--text-secondary); font-size: 13px; line-height: 1.6;">
+            Технічна реалізація обмеження доступу забезпечується операторами та провайдерами телекомунікацій на виконання розпоряджень державних органів.
         </p>
-
-        <div class="footer">
-            <div class="contact-info">
-                Технічна підтримка «Чорне море»:<br>
-                <b>0-800-31-00-31</b><br>
-                <span style="font-size: 12px;">(дзвінки безкоштовні)</span>
-            </div>
-            
-            <div class="location-info">
-                ТОВ ТРК «ЧОРНЕ МОРЕ»<br>
-                Україна, м. Одеса, 2026<br>
-                Статус: Ресурс у переліку обмежених
-            </div>
-        </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-logo">НКЕК / NCEC</div>
+        <div style="text-align: right;">
+            © 2026 Державний реєстр обмежених ресурсів<br>
+            Центр моніторингу інформаційного простору
+        </div>
+    </footer>
 </div>
 
 </body>
