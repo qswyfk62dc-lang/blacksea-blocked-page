@@ -15,6 +15,7 @@
             --text-primary: #e6edf3;
             --text-secondary: #94a3b8;
             --border: #21262d;
+            --hover-bg: #1c2128;
         }
 
         * { box-sizing: border-box; }
@@ -30,10 +31,10 @@
             min-height: 100vh;
         }
 
-        /* Повнорозмірна державна шапка */
+        /* Шапка на всю ширину */
         .gov-header {
             background: var(--header-black);
-            padding: 30px 5%;
+            padding: 25px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -64,9 +65,7 @@
             text-transform: none;
         }
 
-        .coat-of-arms {
-            height: 50px;
-        }
+        .coat-of-arms { height: 50px; }
 
         .flag-line {
             display: flex;
@@ -76,10 +75,11 @@
         .blue { background: var(--accent-blue); flex: 1; }
         .gold { background: var(--accent-gold); flex: 1; }
 
-        /* Основний контент на всю ширину */
+        /* Контент */
         main {
             flex: 1;
             padding: 60px 5%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -87,129 +87,119 @@
 
         .hero-section {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
+            margin-bottom: 50px;
         }
 
         .status-badge {
             display: inline-flex;
-            align-items: center;
             padding: 8px 16px;
             background: rgba(255, 77, 77, 0.1);
             border: 1px solid var(--error-red);
             color: var(--error-red);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             border-radius: 4px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
 
         h1 {
-            font-size: clamp(24px, 5vw, 42px);
-            color: #fff;
-            margin: 0 0 30px 0;
+            font-size: clamp(28px, 5vw, 48px);
+            margin: 0 0 20px 0;
             font-weight: 900;
-            line-height: 1.1;
         }
 
-        .main-description {
-            font-size: clamp(16px, 2vw, 20px);
+        .main-info {
+            font-size: 18px;
             line-height: 1.6;
-            margin-bottom: 50px;
-            color: var(--text-primary);
-            max-width: 900px;
+            color: var(--text-secondary);
+            max-width: 800px;
         }
 
-        /* Блоки з деталями */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        /* FAQ Секція (Акордеон) */
+        .faq-container {
             width: 100%;
-            max-width: 1200px;
-            margin-bottom: 50px;
+            max-width: 1000px;
         }
 
-        .info-card {
+        details {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 30px;
             border-radius: 8px;
-        }
-
-        .info-card h3 {
-            color: var(--accent-blue);
-            font-size: 14px;
-            text-transform: uppercase;
-            margin-top: 0;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .info-card p, .info-card li {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        /* Секція Питання-Відповідь */
-        .details-section {
-            width: 100%;
-            max-width: 1200px;
-            border-top: 1px solid var(--border);
-            padding-top: 50px;
-        }
-
-        .q-block {
-            margin-bottom: 40px;
-        }
-
-        .q-block b {
-            display: block;
-            font-size: 18px;
             margin-bottom: 15px;
-            color: var(--accent-gold);
+            transition: background 0.3s ease;
         }
+
+        details[open] {
+            background: var(--hover-bg);
+            border-color: var(--accent-blue);
+        }
+
+        summary {
+            padding: 20px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+            user-select: none;
+        }
+
+        summary::after {
+            content: "+";
+            font-size: 24px;
+            color: var(--accent-blue);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            content: "−";
+            transform: rotate(180deg);
+        }
+
+        .faq-content {
+            padding: 0 25px 25px 25px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 16px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .faq-content b { color: var(--text-primary); }
 
         /* Футер */
         footer {
             background: var(--header-black);
-            padding: 40px 5%;
+            padding: 50px 5%;
             border-top: 1px solid var(--border);
-            margin-top: auto;
+            margin-top: 80px;
         }
 
-        .footer-content {
+        .footer-wrap {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
         }
 
-        .footer-text {
-            font-size: 12px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
+        .footer-logo { font-weight: 800; font-size: 18px; letter-spacing: 1px; }
+
+        .footer-legal { font-size: 12px; color: var(--text-secondary); line-height: 1.8; }
 
         /* Адаптивність */
         @media (max-width: 768px) {
             .gov-header { flex-direction: column; text-align: center; gap: 20px; }
             .nkek-brand { flex-direction: column; }
-            main { padding: 40px 20px; }
-            .info-grid { grid-template-columns: 1fr; }
-            .footer-content { flex-direction: column; text-align: center; }
-        }
-
-        /* Оптимізація для TV */
-        @media (min-width: 2500px) {
-            .hero-section, .info-grid, .details-section, .footer-content { max-width: 1800px; }
-            .nkek-title { font-size: 22px; }
-            .main-description { font-size: 28px; }
+            summary { font-size: 16px; }
+            .footer-wrap { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -231,55 +221,74 @@
 
 <main>
     <section class="hero-section">
-        <div class="status-badge">Доступ обмежено регулятором</div>
-        <h1>Технічне обмеження доступу до ресурсу</h1>
-        <p class="main-description">
-            Відповідно до розпорядження Національного центру оперативно-технічного управління мережами телекомунікацій (НЦУ), цей вебресурс внесено до переліку об'єктів, доступ до яких блокується на рівні національних операторів зв'язку.
+        <div class="status-badge">Обмеження доступу: НКЕК</div>
+        <h1>Доступ до ресурсу обмежено регулятором</h1>
+        <p class="main-info">
+            Ця сторінка відображається автоматично у зв'язку з виконанням оператором зв'язку вимог чинного законодавства України щодо блокування заборонених вебресурсів.
         </p>
     </section>
 
-    <div class="info-grid">
-        <div class="info-card">
-            <h3>Чому це заблоковано?</h3>
-            <p>Блокування ініційовано НКЕК з метою захисту національного інформаційного простору. Ресурс ідентифіковано як такий, що порушує законодавство України в умовах воєнного стану або використовується для розповсюдження забороненого контенту.</p>
-        </div>
-        <div class="info-card">
-            <h3>Чи буде доступ відновлено?</h3>
-            <p>Рішення про розблокування приймається НЦУ та НКЕК після усунення причин, що призвели до обмеження, або після завершення дії відповідних санкцій та розпоряджень державних органів.</p>
-        </div>
-        <div class="info-card">
-            <h3>Термін дії обмеження</h3>
-            <p>Доступ обмежено на термін дії воєнного стану в Україні або до моменту видання окремого розпорядження про зняття технічного фільтрування трафіку на магістральних каналах.</p>
-        </div>
-    </div>
+    <section class="faq-container">
+        
+        <details open>
+            <summary>Чому я бачу цю сторінку?</summary>
+            <div class="faq-content">
+                Даний ресурс внесено до <b>Єдиного реєстру обмежених ресурсів України</b>. Блокування здійснюється не за особистим бажанням провайдера, а на виконання розпоряджень <b>Національного центру оперативно-технічного управління мережами телекомунікацій (НЦУ)</b> та рішень <b>РНБО</b>. 
+                Провайдер є лише технічним виконавцем державної волі в інформаційному просторі.
+            </div>
+        </details>
 
-    <section class="details-section">
-        <div class="q-block">
-            <b>Як це працює технічно?</b>
-            <p>Блокування здійснюється на рівні DNS-фільтрації та аналізу пакетів (DPI) провайдерами мобільного та домашнього інтернету. Це означає, що запит до хоста перехоплюється та перенаправляється на цю інформаційну сторінку регулятора.</p>
-        </div>
+        <details>
+            <summary>Хто зобов'язаний блокувати ресурси?</summary>
+            <div class="faq-content">
+                Це зобов'язання діє на <b>всій території України</b> без винятку. Згідно з ліцензійними умовами, блокування зобов'язані впроваджувати:
+                <ul>
+                    <li>Оператори мобільного зв'язку (4G/5G мережі);</li>
+                    <li>Провайдери фіксованого домашнього інтернету;</li>
+                    <li>Будь-які інші суб'єкти господарювання, що надають послуги доступу до мережі Інтернет.</li>
+                </ul>
+                Кожен постачальник послуг зобов'язаний <b>щоденно оновлювати актуальні списки</b> заблокованих адрес із державних реєстрів.
+            </div>
+        </details>
 
-        <div class="q-block">
-            <b>Що робити, якщо я вважаю блокування помилковим?</b>
-            <p>Ви можете звернутися до офіційної приймальні НКЕК для отримання роз'яснень щодо статусу даного домену. Оператори зв'язку не мають повноважень самостійно знімати обмеження, встановлені державним регулятором.</p>
-        </div>
+        <details>
+            <summary>На якій підставі діє обмеження?</summary>
+            <div class="faq-content">
+                Основними юридичними підставами є <b>Стаття 32 Закону України «Про електронні комунікації»</b> та укази Президента України щодо введення в дію рішень РНБО про застосування персональних та економічних санкцій. В умовах воєнного стану регулювання інформаційного простору є критичним елементом національної безпеки.
+            </div>
+        </details>
 
-        <div class="q-block">
-            <b>Правове регулювання</b>
-            <p style="font-size: 14px; color: var(--text-secondary);">
-                Обмеження діє згідно зі ст. 32 Закону України «Про електронні комунікації», розпорядженнями НЦУ та рішеннями РНБО щодо забезпечення кібербезпеки та інформаційної цілісності держави.
-            </p>
-        </div>
+        <details>
+            <summary>Коли доступ буде відновлено?</summary>
+            <div class="faq-content">
+                Термін дії обмеження визначається індивідуально для кожного ресурсу в розпорядженнях НЦУ. Зазвичай доступ обмежено на <b>весь період дії воєнного стану</b> або на термін, вказаний у санкційних списках (від 3 до 10 років). Розблокування відбувається автоматично після виключення домену з реєстру НКЕК.
+            </div>
+        </details>
+
+        <details>
+            <summary>Що робити, якщо блокування заважає роботі?</summary>
+            <div class="faq-content">
+                Якщо ви вважаєте, що ресурс заблоковано помилково, ви можете подати офіційний запит до <b>НКЕК (Національної комісії, що здійснює державне регулювання у сферах електронних комунікацій)</b>. Ваш провайдер не має технічного або юридичного права знімати блоки за зверненням абонента, оскільки це призведе до анулювання його ліцензії на діяльність.
+            </div>
+        </details>
+
+        <details>
+            <summary>Як часто оновлюються списки заблокованих сайтів?</summary>
+            <div class="faq-content">
+                Система працює у режимі 24/7. Провайдери отримують оновлені переліки доменів та IP-адрес <b>щоденно</b>. Це є обов'язковою умовою функціонування будь-якого вузла зв'язку в Україні під час дії воєнного стану.
+            </div>
+        </details>
+
     </section>
 </main>
 
 <footer>
-    <div class="footer-content">
+    <div class="footer-wrap">
         <div class="footer-logo">НКЕК / NCEC UKRAINE</div>
-        <div class="footer-text">
-            Служба моніторингу інформаційного простору<br>
-            © 2026 Державний реєстр обмежених вебресурсів<br>
-            м. Київ, Україна
+        <div class="footer-legal">
+            Державний центр моніторингу мереж телекомунікацій<br>
+            © 2026 Спеціалізована сторінка інформування абонентів<br>
+            Україна, м. Київ
         </div>
     </div>
 </footer>
